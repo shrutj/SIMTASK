@@ -88,7 +88,7 @@ fieldset{
 }
 
 
-#pass, #uName{
+#pass, #Email{
     align-items: flex-end;
     width: 220px;
     height: 40px;
@@ -100,8 +100,8 @@ fieldset{
 #pass{
     margin-left: 53px;
 }
-#uName{
-    margin-left: 40px;
+#Email{
+    margin-left: 75px;
 }
 
 #btn{
@@ -125,17 +125,17 @@ fieldset{
       </div>
     </nav>
 
-<form>
+<form id="loginForm">
     <fieldset>
     <div id="Login">
     <p id="tab1">Login</p>
     </div>
     <br>
     <p>
-        <label id="lUname" for="uName">User Name <input type="text" id="uName" #uName name="uName" autocomplete="off" /></label>
+        <label id="lUname" for="Email">E-mail <input type="email" id="Email" name="Email" /></label>
     </p>
     <p>
-        <label id="Lpass" for="pass">Password <input type="password" id="pass" #pass  name="pass"/></label>
+        <label id="Lpass" for="pass">Password <input type="password" id="pass"  name="pass"/></label>
     </p>
     <p>
         <button type="button" id="btn">Login</button>
@@ -149,35 +149,52 @@ fieldset{
         </ng-template>
     </div>-->
     </fieldset>
-</form>
+
 
 <script type="module">
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-analytics.js";
+    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
   
     // Your web app's Firebase configuration
     // For Firebase JS SDK v7.20.0 and later, measurementId is optional
     const firebaseConfig = {
-      apiKey: "AIzaSyDhGyPoFZmCeZ4XcUg4tvP6f5DAjlbD0DM",
-      authDomain: "first-simtask.firebaseapp.com",
-      projectId: "first-simtask",
-      storageBucket: "first-simtask.appspot.com",
-      messagingSenderId: "713152217463",
-      appId: "1:713152217463:web:125e9426f4f18da717e172",
-      measurementId: "G-85JWP34CHX"
+        apiKey: "AIzaSyDhGyPoFZmCeZ4XcUg4tvP6f5DAjlbD0DM",
+        authDomain: "first-simtask.firebaseapp.com",
+        databaseURL: "https://first-simtask-default-rtdb.firebaseio.com",
+        projectId: "first-simtask",
+        storageBucket: "first-simtask.appspot.com",
+        messagingSenderId: "713152217463",
+        appId: "1:713152217463:web:125e9426f4f18da717e172",
+        measurementId: "G-85JWP34CHX"
     };
   
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-
-    import { initializeApp } from "firebase/app";
-    import { getAuth } from "firebase/auth";
-
     const auth = getAuth(app);
+
+    btn.addEventListener('click', (e)=>{
+        var email= document.getElementById('Email').value;
+        var Pass= document.getElementById('Pass').value;
+
+        signInWithEmailAndPassword(auth, email, Pass)
+        .then((userCredential) => {
+            // Signed in 
+            const user = userCredential.user;
+            // ...
+            alert('User Logged In!!')
+            //window.location.replace("WelcomeForlogin.html");
+            console.log("Welcome"+ user);
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // ..
+            alert(errorCode+ ":" +errorMessage)
+        });
+    })
   </script>
 </body>
 </html>
