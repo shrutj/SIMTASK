@@ -61,8 +61,8 @@ form{
     margin: auto;
     width: 400px;
     position: relative;
-    top: 100px; 
-    height: 450px;
+    top: 80px; 
+    height: 485px;
 }
 
 #Login{
@@ -80,7 +80,7 @@ fieldset{
     border-width: 2px;
     border-style: solid;
     padding: 0;
-    height: 450px;
+    height: 485px;
 }
 
 
@@ -99,7 +99,7 @@ fieldset{
     text-align: center;    
 }
 
-#Uname, #pass, #Gender, #DOB, #Name{
+#Uname, #Email, #Pass, #Gender, #DOB, #Name{
     width: 220px;
     height: 30px; 
     border-style: solid;
@@ -117,7 +117,7 @@ fieldset{
       </div>
     </nav>
 
-<form method="post">
+<form >
     <fieldset>
     <div id="Login">
     <p id="tab1">Create Account</p>
@@ -132,8 +132,9 @@ fieldset{
         <option value="Female">Female</option>
         <option value="Others">Others</option>
     </select><br><br>
-    <input id="Uname" placeholder="Create UserName" type="text" name="Uname" /><br><br>
-    <input id="pass" placeholder="Create Password" type="password" name="pass" /><br><br>
+    <input id="Email" placeholder="Email" type="email" name="Email" /><br><br>
+    <input id="Uname" placeholder="Create Username" type="text" name="Uname" /><br><br>
+    <input id="Pass" placeholder="Create Password" type="password" name="pass" /><br><br>
     </div>
     <p>
         <button type="button" id="btn">Create</button>
@@ -149,5 +150,66 @@ fieldset{
     </div>-->
     </fieldset>
 </form>
+
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+    import { getDatabase, ref, set} from "https://www.gstatic.com/firebasejs/9.22.1/firebase-database.js";
+    import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+        apiKey: "AIzaSyDhGyPoFZmCeZ4XcUg4tvP6f5DAjlbD0DM",
+        authDomain: "first-simtask.firebaseapp.com",
+        databaseURL: "https://first-simtask-default-rtdb.firebaseio.com",
+        projectId: "first-simtask",
+        storageBucket: "first-simtask.appspot.com",
+        messagingSenderId: "713152217463",
+        appId: "1:713152217463:web:125e9426f4f18da717e172",
+        measurementId: "G-85JWP34CHX"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+    const auth = getAuth(app);
+    
+    btn.addEventListener('click', (e)=>{
+        var name= document.getElementById('Name').value;
+        var dob= document.getElementById('DOB').value;
+        var gender= document.getElementById('Gender').value;
+        var email= document.getElementById('Email').value;
+        var Uname= document.getElementById('Uname').value;
+        var Pass= document.getElementById('Pass').value;
+
+        createUserWithEmailAndPassword(auth, email, Pass)
+        .then((userCredential) => {
+            // Signed in 
+            const user = userCredential.user;
+            var database_ref=ref(database);
+            var user_data={
+                email: email,
+                name: name,
+                dob: dob,
+                gender: gender,
+                Username: Uname
+            }
+
+            set(database_ref, user_data);
+            // ...
+            alert('Account Created!!')
+            //window.location.replace("WelcomeForlogin.html");
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // ..
+            alert(errorCode+ ":" +errorMessage)
+        });
+    })
+  </script>
 </body>
 </html>
