@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOG-IN</title>
+</head>
+
+<style>
+    #navi{
+    color:rgb(220, 82, 128);
+    background-color: aliceblue;
+    padding: 0%;
+    position: fixed;
+    top:0;
+    width: 100%;
+    left: 0;
+    display: flex;
+    }
+
+    #navi1{
+        width: 100%;
+        display: flex;
+        margin: 16px ;
+        align-items: center;
+        justify-content:right;
+
+    }
+
+    #tab{
+    padding-left: 10px;
+    width: 10%;
+    }
+
+    #tab1{
+        padding-left: 10px;
+    }
+
+    #LgBtn1{
+    background-color: rgb(100, 100, 254) ;
+    color: white;
+    height: 40px;
+    width: 80px;
+    border-radius: 8px;
+    border-style: solid;
+    border-color:rgb(100, 100, 254) ;
+    margin-left: 20px;
+    }
+
+    h1{
+        text-align: center;
+        color:rgb(220, 82, 128);
+        text-shadow: 0px 2px 2px black;
+        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+
+form{
+    align-items: center;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin: auto;
+    width: 400px;
+    position: relative;
+    top: 100px; 
+    height: 450px;
+}
+
+#Login{
+    font-size: large;
+    top:0;
+    background-color: rgb(100, 100, 254);
+    color: white;
+    padding: 1px;
+    position: relative;
+    width: 100%;
+}
+
+fieldset{
+    border-color: rgb(100, 100, 254);
+    border-width: 2px;
+    border-style: solid;
+    padding: 0;
+    height: 450px;
+}
+
+
+#btn{
+    background-color: rgb(100, 100, 254) ;
+    color: white;
+    height: 40px;
+    width: 100px;
+    margin-left: 140px;
+    border-radius: 4px;
+    border-style: solid;
+    border-color:rgb(100, 100, 254) ;
+}
+
+#inForm{
+    text-align: center;    
+}
+
+#Uname, #pass, #Gender, #DOB, #Name{
+    width: 220px;
+    height: 30px; 
+    border-style: solid;
+    border-color: rgb(163, 163, 163);
+    border-radius: 5px;
+}
+
+</style>
+<body>
+    <nav id="navi">
+        <h1 id="tab">LOG-IN</h1>
+      <div id="navi1">
+
+        <button id="LgBtn1" onclick="location.href='Login.html'"> Login </button>
+      </div>
+    </nav>
+
+<form method="post">
+    <fieldset>
+    <div id="Login">
+    <p id="tab1">Create Account</p>
+    </div>
+    <br><br>
+    <div id="inForm">
+    <input id="Name" placeholder="Your Name" type="text" name="Name"/><br><br>
+    <input id="DOB" placeholder="Date of Birth" type="text" name="DOB" onfocus="(this.type='date')" onblur="(this.type='text')" /><br><br>
+    <select id="Gender" name="Gender" style="width: 230px; border: solid rgb(163, 163, 163); height:34px;" >
+        <option value="" disabled selected>Gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Others">Others</option>
+    </select><br><br>
+    <input id="Uname" placeholder="Create UserName" type="text" name="Uname" /><br><br>
+    <input id="pass" placeholder="Create Password" type="password" name="pass" /><br><br>
+    </div>
+    <p>
+        <button type="button" id="btn">Create</button>
+    </p>
+   
+   <!-- <div *ngIf="submitted">
+        <div *ngIf="isAuthenticated; else faliureMsg">
+            <h2 id="h2-1"> Welcome {{userName}}</h2>
+        </div>
+        <ng-template #faliureMsg>
+            <h2 id="h2-2"> Invalid Login !!! Please try again...</h2>
+        </ng-template>
+    </div>-->
+    </fieldset>
+</form>
+</body>
+</html>
