@@ -177,7 +177,7 @@ fieldset{
 
     btn.addEventListener('click', (e)=>{
         var email= document.getElementById('Email').value;
-        var Pass= document.getElementById('Pass').value;
+        var Pass= document.getElementById('pass').value;
 
         signInWithEmailAndPassword(auth, email, Pass)
         .then((userCredential) => {
