@@ -189,7 +189,7 @@ fieldset{
         .then((userCredential) => {
             // Signed in 
             const user = userCredential.user;
-            var database_ref=ref(database);
+            var database_ref=ref(database, "users/" + user.uid);
             var user_data={
                 email: email,
                 name: name,
