@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener</title>
+</head>
+<style>
+    #navi{
+    color:rgb(220, 82, 128);
+    background-color: aliceblue;
+    padding: 0%;
+    position: fixed;
+    top:0;
+    width: 100%;
+    left: 0;
+    height: 80px;
+    }
+
+    h1{
+        font-size: larger;
+    }
+
+    #Url{
+        padding-top: 100px;
+        text-align: center;
+        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        color: rgb(220, 82, 128) ;
+    }
+    
+    #url{
+        border-style: solid;
+        border-color: black;
+        border-width:2px;
+        width: 300px;
+        height: 30px;
+        text-align: center;
+        border-radius: 5px;
+    }
+
+    #btn{
+    background-color: rgb(100, 100, 254) ;
+    color: white;
+    height: 40px;
+    width: 100px;
+    text-align: center;
+    border-radius: 4px;
+    border-style: solid;
+    border-color:rgb(100, 100, 254) ;
+    }
+
+</style>
+<body>
+    <nav id="navi">
+    <br>
+     <b><h1 style="text-align: center;"> Shrut's URL Shortener</h1></b>
+    </nav>
+    <br>
+    
+    <div id="Url">
+    <label for="url"> <b>Enter your URL here: </b></label>
+    <input type="url" placeholder="Input URL" id="url">
+    
+    <button type="button" onClick="shortenURL()" id="btn"> Shorten </button>
+    <br>
+    <br>
+    <div id="result"></div>
+    </div>
+
+    <script type="text/javascript">
+        async function shortenURL(){
+            const url=document.getElementById("url").value;
+            const response= await fetch(`https://tinyurl.com/api-create.php?url=${url}`);
+            
+            if(response.ok){
+            const data= await response.text();
+            document.getElementById("result").innerHTML=`Shortened URL: <a href="${data}" target="_blank"> ${data}</a>`;
+            }
+            else{
+                document.getElementById("result").innerHTML='Error shortening URL';
+            }
+        }
+    </script>
+</body>
+</html>
